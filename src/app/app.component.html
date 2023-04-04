@@ -1,0 +1,21 @@
+<mat-toolbar color="primary">
+  <span>SpaceX Missions</span>
+</mat-toolbar>
+
+<mat-progress-spinner *ngIf="loading" mode="indeterminate"></mat-progress-spinner>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <app-missionfilter (filterMissions)="missionList.filterMissions()"></app-missionfilter>
+    </div>
+    <div class="col-md-9">
+      <app-missionlist #missionList (selectMission)="missionDetails.mission = $event"></app-missionlist>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <app-missiondetails [mission]="mission"></app-missiondetails>
+    </div>
+  </div>
+</div>

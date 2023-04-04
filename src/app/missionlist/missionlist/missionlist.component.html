@@ -1,0 +1,22 @@
+<div class="container">
+    <mat-form-field>
+      <input matInput type="number" placeholder="Search by year of launch" [(ngModel)]="launchYear" (input)="filterMissions()" />
+    </mat-form-field>
+    <mat-grid-list class="mission-list" cols="3" rowHeight="400px">
+      <mat-grid-tile *ngFor="let mission of missions" class="mission-card" (click)="selectMission(mission)">
+        <mat-card>
+          <img mat-card-image [src]="mission.links.mission_patch_small" />
+          <mat-card-content>
+            <mat-card-title>{{ mission.mission_name }}</mat-card-title>
+            <mat-card-subtitle>{{ mission.launch_year }}</mat-card-subtitle>
+            <div class="details">{{ mission.details }}</div>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <div class="container" *ngIf="loading">
+    <mat-spinner></mat-spinner>
+  </div>
+  <app-missionfilter (yearSelected)="filterMissions($event)"></app-missionfilter>
+
